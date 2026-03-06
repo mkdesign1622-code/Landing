@@ -15,12 +15,12 @@
 
   header {
     width: 100%;
-    padding: 20px 0;
-    background: #000;
+    padding: 18px 0;
     border-bottom: 1px solid #222;
     position: fixed;
     top: 0;
     left: 0;
+    background: #000;
     z-index: 10;
   }
 
@@ -33,7 +33,7 @@
   }
 
   .logo {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     color: #4da6ff;
   }
@@ -51,27 +51,32 @@
 
   .hero {
     width: 100%;
-    min-height: 100vh;
-    padding-top: 120px;
+    padding-top: 140px;
+    padding-bottom: 80px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    gap: 40px;
   }
 
-  .hero h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
+  .hero-text {
+    width: 50%;
   }
 
-  .hero p {
+  .hero-text h1 {
+    font-size: 46px;
+    margin-bottom: 15px;
+  }
+
+  .hero-text p {
     font-size: 18px;
     color: #bbb;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
   }
 
-  .hero button {
+  .hero-text button {
     padding: 12px 24px;
     background: #4da6ff;
     border: none;
@@ -81,8 +86,17 @@
     transition: transform .2s;
   }
 
-  .hero button:hover {
+  .hero-text button:hover {
     transform: translateY(-3px);
+  }
+
+  .hero-img {
+    width: 50%;
+    height: 300px;
+    background-image: url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
   }
 
   .products {
@@ -100,42 +114,42 @@
   .products p.sub {
     text-align: center;
     color: #aaa;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 
   .product-card {
-    display: flex;
-    gap: 20px;
     background: #0d0d0f;
-    padding: 20px;
-    border-radius: 10px;
     border: 1px solid #1a1a1a;
-    margin-bottom: 30px;
+    border-radius: 10px;
+    padding: 20px;
   }
 
   .product-img {
-    width: 40%;
+    width: 100%;
     height: 180px;
     background-size: cover;
     background-position: center;
     border-radius: 8px;
+    margin-bottom: 15px;
   }
 
-  .product-info {
-    width: 60%;
-  }
-
-  .product-info h3 {
+  .product-card h3 {
     margin: 0 0 10px;
     color: #4da6ff;
   }
 
-  .product-info p {
+  .product-card p {
     margin: 0 0 15px;
     color: #bbb;
   }
 
-  .product-info button {
+  .product-card button {
     padding: 10px 20px;
     background: #4da6ff;
     border: none;
@@ -145,12 +159,11 @@
     transition: transform .2s;
   }
 
-  .product-info button:hover {
+  .product-card button:hover {
     transform: translateY(-3px);
   }
 
   footer {
-    background: #000;
     border-top: 1px solid #222;
     padding: 40px 0;
     margin-top: 40px;
@@ -183,19 +196,23 @@
   }
 
   @media (max-width: 900px) {
-    .product-card {
+    .hero {
       flex-direction: column;
+      text-align: center;
     }
-    .product-img, .product-info {
+    .hero-text, .hero-img {
       width: 100%;
+    }
+    .product-grid {
+      grid-template-columns: 1fr;
     }
   }
 
   @media (max-width: 600px) {
     nav { display: none; }
-    .hero h1 { font-size: 32px; }
-    .hero p { font-size: 16px; }
-    .product-img { height: 160px; }
+    .hero-text h1 { font-size: 32px; }
+    .hero-text p { font-size: 16px; }
+    .hero-img { height: 220px; }
   }
 </style>
 </head>
@@ -206,7 +223,7 @@
   <div class="header-inner">
     <div class="logo">Stellar Goods</div>
     <nav>
-      <a href="#products">Товары</a>
+      <a href="#products">Каталог</a>
       <a href="#about">О нас</a>
       <a href="#contact">Контакты</a>
     </nav>
@@ -214,40 +231,49 @@
 </header>
 
 <section class="hero">
-  <h1>Товары из другой галактики</h1>
-  <p>Минималистичные предметы, созданные для тех, кто ценит форму и тишину.</p>
-  <button>Смотреть каталог</button>
+  <div class="hero-text">
+    <h1>Новые формы. Чистый дизайн.</h1>
+    <p>Stellar Goods — коллекция минималистичных предметов для современного пространства.</p>
+    <button>Перейти в каталог</button>
+  </div>
+
+  <div class="hero-img"></div>
 </section>
 
 <section class="products" id="products">
   <h2>Каталог</h2>
-  <p class="sub">Подборка уникальных товаров Stellar Goods</p>
+  <p class="sub">Выбранные товары Stellar Goods</p>
 
-  <div class="product-card">
-    <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1524758631624-e2822e304c36');"></div>
-    <div class="product-info">
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1524758631624-e2822e304c36');"></div>
       <h3>Stellar Lamp</h3>
-      <p>Мягкий свет, чистая форма, космическая атмосфера.</p>
+      <p>Мягкий свет и чистая форма.</p>
       <button>Купить</button>
     </div>
-  </div>
 
-  <div class="product-card">
-    <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1503602642458-232111445657');"></div>
-    <div class="product-info">
+    <div class="product-card">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1503602642458-232111445657');"></div>
       <h3>Orbit Speaker</h3>
-      <p>Глубокий звук и минималистичный дизайн.</p>
+      <p>Глубокий звук и минимализм.</p>
       <button>Купить</button>
     </div>
-  </div>
 
-  <div class="product-card">
-    <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f');"></div>
-    <div class="product-info">
+    <div class="product-card">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f');"></div>
       <h3>Galaxy Pen</h3>
-      <p>Тактильная ручка с металлическим корпусом.</p>
+      <p>Металлическая ручка с тактильностью.</p>
       <button>Купить</button>
     </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4');"></div>
+      <h3>Nova Vase</h3>
+      <p>Минималистичная ваза с матовой поверхностью.</p>
+      <button>Купить</button>
+    </div>
+
   </div>
 </section>
 
@@ -255,7 +281,7 @@
   <div class="footer-inner">
     <div class="footer-col">
       <h4>Stellar Goods</h4>
-      <p>Дизайн‑объекты, вдохновлённые космосом.</p>
+      <p>Минималистичные предметы для современного дома.</p>
     </div>
 
     <div class="footer-col">
