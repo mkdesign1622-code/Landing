@@ -1,226 +1,107 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Stellar Goods</title>
-
 <style>
-  body {
-    margin: 0;
+  :root{
+    --bg:#0f0f0f;
+    --card:#151515;
+    --accent:#ff3b3b;
+    --muted:#bdbdbd;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
     font-family: Arial, sans-serif;
-    background: #000;
-    color: #fff;
+    background:var(--bg);
+    color:var(--white);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
   }
 
-  header {
-    width: 100%;
-    padding: 18px 0;
-    border-bottom: 1px solid #222;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #000;
-    z-index: 10;
+  header{
+    width:100%;
+    height:64px;
+    background:var(--bg);
+    border-bottom:1px solid #222;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
   }
+  .container{width:90%;max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-weight:700;color:var(--accent);font-size:20px;letter-spacing:0.6px;}
+  nav{display:flex;gap:18px;align-items:center}
+  nav a{color:var(--muted);text-decoration:none;font-size:15px;padding:6px 8px;border-radius:6px;transition:color .18s}
+  nav a:hover{color:var(--white)}
 
-  .header-inner {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  main{padding-top:84px}
+
+  .hero{
+    width:100%;
+    min-height:calc(100vh - 84px);
+    display:flex;
+    gap:36px;
+    align-items:center;
+    justify-content:center;
+    padding:48px 0;
   }
+  .hero-inner{width:90%;max-width:1200px;display:flex;gap:36px;align-items:center;}
+  .hero-left{flex:1;display:flex;flex-direction:column;gap:18px}
+  .hero-left h1{font-size:44px;line-height:1.02;color:var(--accent)}
+  .hero-left p{color:var(--muted);font-size:17px;max-width:520px}
+  .hero-left .cta{width:180px;padding:12px 16px;background:var(--accent);border:none;color:#fff;border-radius:8px;cursor:pointer;transition:transform .18s}
+  .hero-left .cta:hover{transform:translateY(-4px)}
+  .hero-right{flex:1;display:flex;align-items:center;justify-content:center}
+  .hero-card{width:100%;max-width:520px;height:360px;background:linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.18));border-radius:12px;overflow:hidden;border:1px solid #222;display:flex;align-items:center;justify-content:center}
+  .hero-card img{width:100%;height:100%;object-fit:cover;display:block}
 
-  .logo {
-    font-size: 22px;
-    font-weight: bold;
-    color: #4da6ff;
+  .products{width:90%;max-width:1200px;margin:40px auto 80px}
+  .products h2{color:var(--accent);font-size:28px;margin-bottom:6px}
+  .products p.sub{color:var(--muted);margin-bottom:20px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:var(--card);border-radius:10px;padding:14px;border:1px solid #222;display:flex;flex-direction:column;gap:12px;transition:transform .18s}
+  .card:hover{transform:translateY(-6px)}
+  .card-img{width:100%;height:180px;border-radius:8px;overflow:hidden}
+  .card-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .card h3{color:var(--accent);font-size:18px}
+  .card p{color:var(--muted);font-size:14px}
+  .card .buy{margin-top:auto;padding:10px 14px;background:var(--accent);border:none;color:#fff;border-radius:8px;cursor:pointer}
+
+  footer{background:#0b0b0b;border-top:1px solid #222;padding:28px 0;color:var(--muted)}
+  .footer-inner{width:90%;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+  .footer-col{min-width:180px}
+  .footer-col h4{color:var(--accent);margin-bottom:8px}
+  .footer-col p{color:var(--muted);font-size:14px;line-height:1.4}
+
+  @media (max-width:1100px){
+    .grid{grid-template-columns:repeat(2,1fr)}
   }
-
-  nav a {
-    margin-left: 20px;
-    color: #ccc;
-    text-decoration: none;
-    font-size: 15px;
+  @media (max-width:900px){
+    .hero-inner{flex-direction:column-reverse;align-items:center}
+    .hero-left{text-align:center}
+    .hero-left h1{font-size:36px}
+    .hero-card{height:300px}
+    nav{display:none}
   }
-
-  nav a:hover {
-    color: #4da6ff;
-  }
-
-  .hero {
-    width: 100%;
-    padding-top: 140px;
-    padding-bottom: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    margin: 0 auto;
-    gap: 40px;
-  }
-
-  .hero-text {
-    width: 50%;
-  }
-
-  .hero-text h1 {
-    font-size: 46px;
-    margin-bottom: 15px;
-  }
-
-  .hero-text p {
-    font-size: 18px;
-    color: #bbb;
-    margin-bottom: 25px;
-  }
-
-  .hero-text button {
-    padding: 12px 24px;
-    background: #4da6ff;
-    border: none;
-    color: #fff;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform .2s;
-  }
-
-  .hero-text button:hover {
-    transform: translateY(-3px);
-  }
-
-  .hero-img {
-    width: 50%;
-    height: 300px;
-    background-image: url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f');
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-  }
-
-  .products {
-    width: 90%;
-    margin: 0 auto;
-    padding: 80px 0;
-  }
-
-  .products h2 {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 10px;
-  }
-
-  .products p.sub {
-    text-align: center;
-    color: #aaa;
-    margin-bottom: 40px;
-  }
-
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
-
-  .product-card {
-    background: #0d0d0f;
-    border: 1px solid #1a1a1a;
-    border-radius: 10px;
-    padding: 20px;
-  }
-
-  .product-img {
-    width: 100%;
-    height: 180px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    margin-bottom: 15px;
-  }
-
-  .product-card h3 {
-    margin: 0 0 10px;
-    color: #4da6ff;
-  }
-
-  .product-card p {
-    margin: 0 0 15px;
-    color: #bbb;
-  }
-
-  .product-card button {
-    padding: 10px 20px;
-    background: #4da6ff;
-    border: none;
-    color: #fff;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform .2s;
-  }
-
-  .product-card button:hover {
-    transform: translateY(-3px);
-  }
-
-  footer {
-    border-top: 1px solid #222;
-    padding: 40px 0;
-    margin-top: 40px;
-  }
-
-  .footer-inner {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-
-  .footer-col h4 {
-    margin-bottom: 10px;
-    color: #4da6ff;
-  }
-
-  .footer-col p {
-    margin: 4px 0;
-    color: #aaa;
-  }
-
-  .footer-bottom {
-    text-align: center;
-    margin-top: 30px;
-    color: #666;
-    font-size: 14px;
-  }
-
-  @media (max-width: 900px) {
-    .hero {
-      flex-direction: column;
-      text-align: center;
-    }
-    .hero-text, .hero-img {
-      width: 100%;
-    }
-    .product-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 600px) {
-    nav { display: none; }
-    .hero-text h1 { font-size: 32px; }
-    .hero-text p { font-size: 16px; }
-    .hero-img { height: 220px; }
+  @media (max-width:600px){
+    .grid{grid-template-columns:1fr}
+    .hero-card{height:220px}
+    .hero-left h1{font-size:28px}
+    .container{width:94%}
+    header{height:56px}
+    main{padding-top:72px}
   }
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="header-inner">
+  <div class="container">
     <div class="logo">Stellar Goods</div>
     <nav>
       <a href="#products">Каталог</a>
@@ -230,76 +111,100 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-text">
-    <h1>Новые формы. Чистый дизайн.</h1>
-    <p>Stellar Goods — коллекция минималистичных предметов для современного пространства.</p>
-    <button>Перейти в каталог</button>
-  </div>
-
-  <div class="hero-img"></div>
-</section>
-
-<section class="products" id="products">
-  <h2>Каталог</h2>
-  <p class="sub">Выбранные товары Stellar Goods</p>
-
-  <div class="product-grid">
-
-    <div class="product-card">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1524758631624-e2822e304c36');"></div>
-      <h3>Stellar Lamp</h3>
-      <p>Мягкий свет и чистая форма.</p>
-      <button>Купить</button>
+<main>
+  <section class="hero" aria-label="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <h1>Красная линия современного предметного дизайна</h1>
+        <p>Коллекция предметов Stellar Goods — сильные акценты, чистые формы и продуманная функциональность. Каждый объект создан, чтобы выделяться в интерьере.</p>
+        <button class="cta" onclick="location.href='#products'">Открыть каталог</button>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card">
+          <img src="https://avatars.mds.yandex.net/i?id=6ce6c6f7ac3f6f1f3834903746f4bc62_l-8258224-images-thumbs&n=13" alt="Hero product">
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="product-card">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1503602642458-232111445657');"></div>
-      <h3>Orbit Speaker</h3>
-      <p>Глубокий звук и минимализм.</p>
-      <button>Купить</button>
+  <section class="products" id="products">
+    <h2>Каталог</h2>
+    <p class="sub">Отобранные предметы с акцентом на форму и материал</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" alt="Red Lamp">
+        </div>
+        <h3>Red Lamp</h3>
+        <p>Лаконичная лампа с матовой поверхностью и тёплым светом.</p>
+        <button class="buy">Купить</button>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80" alt="Pulse Speaker">
+        </div>
+        <h3>Pulse Speaker</h3>
+        <p>Компактная колонка с глубоким звуком и строгим силуэтом.</p>
+        <button class="buy">Купить</button>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80" alt="Edge Pen">
+        </div>
+        <h3>Edge Pen</h3>
+        <p>Металлическая ручка с тактильной гравировкой и балансом веса.</p>
+        <button class="buy">Купить</button>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1200&q=80" alt="Core Vase">
+        </div>
+        <h3>Core Vase</h3>
+        <p>Матовая ваза с акцентной красной вставкой, ручная отделка.</p>
+        <button class="buy">Купить</button>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1200&q=80" alt="Orbit Table">
+        </div>
+        <h3>Orbit Table</h3>
+        <p>Низкий стол с геометрической опорой и лаконичной столешницей.</p>
+        <button class="buy">Купить</button>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80" alt="Nova Chair">
+        </div>
+        <h3>Nova Chair</h3>
+        <p>Стул с мягкой формой и контрастной обивкой.</p>
+        <button class="buy">Купить</button>
+      </div>
     </div>
-
-    <div class="product-card">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f');"></div>
-      <h3>Galaxy Pen</h3>
-      <p>Металлическая ручка с тактильностью.</p>
-      <button>Купить</button>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4');"></div>
-      <h3>Nova Vase</h3>
-      <p>Минималистичная ваза с матовой поверхностью.</p>
-      <button>Купить</button>
-    </div>
-
-  </div>
-</section>
+  </section>
+</main>
 
 <footer id="contact">
   <div class="footer-inner">
     <div class="footer-col">
       <h4>Stellar Goods</h4>
-      <p>Минималистичные предметы для современного дома.</p>
+      <p>Коллекция предметов для современного интерьера. Дизайн и производство — в одном потоке.</p>
     </div>
-
     <div class="footer-col">
       <h4>Контакты</h4>
       <p>hello@stellargoods.space</p>
       <p>+7 (901) 777‑44‑22</p>
     </div>
-
     <div class="footer-col">
       <h4>Навигация</h4>
-      <p>Каталог</p>
-      <p>О нас</p>
-      <p>Контакты</p>
+      <p><a href="#products" style="color:var(--muted);text-decoration:none">Каталог</a></p>
+      <p><a href="#contact" style="color:var(--muted);text-decoration:none">Контакты</a></p>
     </div>
-  </div>
-
-  <div class="footer-bottom">
-    © 2026 Stellar Goods
   </div>
 </footer>
 
